@@ -1,0 +1,15 @@
+---
+applications:
+- name: easy-proxy
+  buildpack: nodejs_buildpack
+  routes:
+    - route: easy-proxy.apps.adp.allianz
+  memory: 256M
+  instances: 1
+  command: node app.js
+  env:
+    NODE_ENV: development
+    no_proxy: localhost,127.0.0.1,.allianz
+  services:
+    - logforwarder
+    - ci_no_stop_nightly
